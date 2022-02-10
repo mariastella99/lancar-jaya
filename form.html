@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Responsive Signup/Login form</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,600" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/forms.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">
+   <section id="formHolder">
+
+      <div class="row">
+
+         <!-- Brand Box -->
+         <div class="col-sm-6 brand">
+            <a href="index.html" class="logo">Lancar Jaya <span>.</span></a>
+
+            <div class="heading">
+               <h2>Ekspedisi</h2>
+               <p>Melayani Pengiriman Paket</p>
+            </div>
+
+            <div class="success-msg">
+               <p>Great! You are one of our members now</p>
+               <a href="#" class="profile">Your Profile</a>
+            </div>
+         </div>
+
+
+         <!-- Form Box -->
+         <div class="col-sm-6 form">
+
+            <!-- Login Form -->
+            <div id="modal-login" class="login form-peice switched">
+               <form id="login-form" class="login-form" action="#" method="post">
+                  
+                  <div class="form-group">
+                     <label for="login-email">Email</label>
+                     <input type="email" id="login-email" required>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="login-password">Password</label>
+                     <input type="password" id="login-password" required>
+                  </div>
+                  <br>
+                  <div class="CTA">
+                     <button class="btn red darken-2 z-depth-0">Masuk</button>
+                     <a href="#" class="switch" data-target="modal-signup">Daftar akun</a>
+                  </div>
+                  <!-- <div class="CTA">
+                     <a href="admin.html"><input type="submit" value="Masuk"></a>
+                     <a href="#" class="switch">Daftar akun</a>
+                  </div> -->
+               </form>
+            </div><!-- End Login Form -->
+
+
+            <!-- Signup Form -->
+            <div id="modal-signup" class="signup form-peice">
+               <form id="signup-form" class="signup-form" action="#" method="post">
+
+                  <div class="form-group">
+                     <label for="signup-name">Nama Lengkap</label>
+                     <input type="text" id="signup-name" class="name">
+                     <span class="error"></span>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="signup-email">Email</label>
+                     <input type="email" id="signup-email" class="email">
+                     <span class="error"></span>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="signup-phone">No. Handphone</label>
+                     <input type="text" id="signup-phone" class="phone">
+                     <span class="error"></span>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="signup-password">Password</label>
+                     <input type="password" id="signup-password" class="pass">
+                     <span class="error"></span>
+                  </div>
+
+                  <!-- <div class="form-group">
+                     <label for="signup-passwordCon">Konfirmasi Password</label>
+                     <input type="password" name="passwordCon" id="signup-passwordCon" class="passConfirm">
+                     <span class="error"></span>
+                  </div> -->
+
+                  <div class="CTA">
+                     <button class="btn red darken-2 z-depth-0">Daftar</button>
+                     <a href="#" class="switch" data-target="modal-login">Sudah punya akun?</a>
+                  </div>
+                  <!-- <div class="CTA">
+                     <input type="submit" value="Daftar" id="submit">
+                   <a href="#" class="switch">  Sudah punya akun?</a>
+                  </div> -->
+               </form>
+            </div><!-- End Signup Form -->
+         </div>
+      </div>
+
+   </section>
+
+
+
+</div>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-functions.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+
+<script>
+   // Your web app's Firebase configuration
+   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+   var firebaseConfig = {
+       apiKey: "AIzaSyAH3e9JE6Oj8qXVvk6KiCWF_spKN3ZNxhs",
+       authDomain: "iai-lancar-jaya.firebaseapp.com",
+       databaseURL: "https://iai-lancar-jaya-default-rtdb.asia-southeast1.firebasedatabase.app",
+       projectId: "iai-lancar-jaya",
+       storageBucket: "iai-lancar-jaya.appspot.com",
+       messagingSenderId: "686161300474",
+       appId: "1:686161300474:web:23dfa1aa8830d6df9c3243",
+       measurementId: "G-RF8L7X58BQ"
+   };
+   // Initialize Firebase
+   firebase.initializeApp(firebaseConfig);
+   firebase.analytics();
+
+   //auth and firestore reference
+   const auth = firebase.auth();
+   const db = firebase.firestore();
+   const functions = firebase.functions();
+   //update firestore settings
+   db.settings({timestampsInSnapshots:true});
+
+</script>
+
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script  src="assets/js/form.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/index.js"></script>
+
+</body>
+</html>
